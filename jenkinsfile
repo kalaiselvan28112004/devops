@@ -4,13 +4,13 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git credentialsId: 'github-pat', url: 'https://github.com/kalaiselvan28112004/devops-demo.git'
+                git credentialsId: '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', url: 'https://github.com/kalaiselvan28112004/devops-demo.git'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t kalaiselvan28112004/devops:latest .'  // Use the correct repository name
+                sh 'docker build -t kalaiselvan28112004/devops:latest .'
             }
         }
 
@@ -25,6 +25,11 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 sh 'kubectl apply -f k8s-deployment.yaml'
+            }
+        }
+    }
+}
+
             }
         }
     }
